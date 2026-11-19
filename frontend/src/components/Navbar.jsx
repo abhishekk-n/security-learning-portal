@@ -9,6 +9,7 @@ import {
   Video,
   FileText,
   Home,
+  ArrowUpRight,
 } from "lucide-react";
 
 const links = [
@@ -29,19 +30,24 @@ export default function Navbar() {
           className="site-logo"
           onClick={() => setMenuOpen(false)}
         >
-          <ShieldCheck size={28} />
-          <span>Security Learning Portal</span>
+          <span className="logo-mark">
+            <ShieldCheck size={25} strokeWidth={2} />
+          </span>
+          <span className="logo-copy">
+            <strong>SECURE<span>LEARN</span></strong>
+            <small>CYBERSECURITY ACADEMY</small>
+          </span>
         </NavLink>
 
         <button
           type="button"
           className="mobile-menu-button"
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={() => setMenuOpen((open) => !open)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
           aria-controls="site-nav-links"
         >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          {menuOpen ? <X size={23} /> : <Menu size={23} />}
         </button>
 
         <div
@@ -62,6 +68,15 @@ export default function Navbar() {
               {label}
             </NavLink>
           ))}
+
+          <NavLink
+            to="/books"
+            className="nav-cta"
+            onClick={() => setMenuOpen(false)}
+          >
+            Start Learning
+            <ArrowUpRight size={16} />
+          </NavLink>
         </div>
       </nav>
     </header>
