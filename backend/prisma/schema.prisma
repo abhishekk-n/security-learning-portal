@@ -1,0 +1,28 @@
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ResourceType {
+  BOOK
+  VIDEO
+  ARTICLE
+}
+
+model Resource {
+  id          String       @id @default(uuid())
+  title       String
+  description String
+  type        ResourceType
+  category    String
+  imageUrl    String?
+  resourceUrl String
+  level       String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}

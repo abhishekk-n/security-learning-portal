@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Frontend build
+frontend/dist/
+
+# Generated Prisma client
+backend/src/generated/prisma/
+
+# Logs
+*.log
+
+# Editor and OS files
+.vscode/
+.DS_Store

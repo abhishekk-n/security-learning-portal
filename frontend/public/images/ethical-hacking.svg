@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 800 450" role="img"
+      aria-label="Ethical Hacking">
+      <rect width="800" height="450" fill="#0b1730"/>
+      <circle cx="650" cy="80" r="190" fill="#059669" opacity=".18"/>
+      <circle cx="120" cy="390" r="160" fill="#059669" opacity=".15"/>
+      <rect x="55" y="65" width="690" height="320" rx="24"
+        fill="none" stroke="#059669" stroke-width="3" opacity=".6"/>
+      <path d="M400 115 L475 145 V215
+        C475 270 440 310 400 335
+        C360 310 325 270 325 215 V145 Z"
+        fill="#059669" opacity=".35"
+        stroke="#7dd3fc" stroke-width="5"/>
+      <path d="M375 220 L395 240 L430 200"
+        fill="none" stroke="white"
+        stroke-width="10" stroke-linecap="round"
+        stroke-linejoin="round"/>
+      <text x="80" y="115" fill="#cbd5e1"
+        font-family="Arial,sans-serif" font-size="23">
+        SECURITY LEARNING PORTAL
+      </text>
+      <text x="80" y="355" fill="white"
+        font-family="Arial,sans-serif"
+        font-weight="bold" font-size="38">
+        Ethical Hacking
+      </text>
+      <text x="715" y="115" fill="#7dd3fc"
+        font-family="Arial,sans-serif" font-size="18"
+        text-anchor="end">ETHICAL</text>
+    </svg>
