@@ -15,12 +15,16 @@ const app = express();
 app.use(helmet());
 
 // Allow React frontend
+// Allow approved frontend origins
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:4173",
+  process.env.FRONTEND_URL,
+].filter(Boolean);
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:4173",
-    ],
+    origin: allowedOrigins,
   })
 );
 
