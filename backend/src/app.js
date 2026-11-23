@@ -14,17 +14,52 @@ const app = express();
 // Security headers
 app.use(helmet());
 
-// Allow React frontend
-// Allow approved frontend origins
+// Trust Vercel's reverse proxy for rate limiting
+app.set("trust proxy", 1);
+
+// Allowed frontend origins
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:4173",
+  "https://security-learning-portal.vercel.app",
   process.env.FRONTEND_URL,
 ].filter(Boolean);
 
+// CORS configuration
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin(origin, callback) {
+      // Allow requests without an Origin header
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      // Allow explicitly configured origins
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      // Allow deployment-specific frontend URLs
+      try {
+        const url = new URL(origin);
+
+        if (
+          url.protocol === "https:" &&
+          /^security-learning-portal-[a-z0-9-]+-abhishekk-n\.vercel\.app$/.test(
+            url.hostname
+          )
+        ) {
+          return callback(null, true);
+        }
+      } catch {
+        // Invalid origin
+      }
+
+      // Reject other origins
+      return callback(null, false);
+    },
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
@@ -56,10 +91,11 @@ app.get("/api/health", (req, res) => {
 // Resource routes
 app.use("/api/resources", resourceRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Security Learning Portal Backend is Running!");
-});
-
+// Handle unknown routes
 app.use(notFoundHandler);
+
+// Global error handler
 app.use(errorHandler);
+
 export default app;
+
